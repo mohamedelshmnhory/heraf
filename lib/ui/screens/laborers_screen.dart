@@ -63,9 +63,26 @@ class _LaborersScreenState extends State<LaborersScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(laborersMd.laborers[i].name),
-                                Text(laborersMd.laborers[i].address),
-                                Icon(Icons.star),
+                                Text(
+                                  laborersMd.laborers[i].name.length > 25
+                                      ? '${laborersMd.laborers[i].name.substring(0, 25)}...'
+                                      : laborersMd.laborers[i].name,
+                                ),
+                                Text(
+                                  laborersMd.laborers[i].address.length > 25
+                                      ? '${laborersMd.laborers[i].address.substring(0, 25)}...'
+                                      : laborersMd.laborers[i].address,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(laborersMd.laborers[i].rate
+                                        .toStringAsFixed(1)),
+                                    Icon(
+                                      Icons.star,
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),

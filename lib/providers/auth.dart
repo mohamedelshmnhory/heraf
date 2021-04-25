@@ -105,11 +105,11 @@ class Auth with ChangeNotifier {
           .then((value) async {
         userDetails = await getUserDetails(currentUser.uid, token);
       });
-      if (userDetails.type == 'زبون') {
+      if (userDetails?.type == 'زبون') {
         isAuth = true;
         isUser = true;
       } else {
-        if (userDetails.type == 'حرفي') {
+        if (userDetails?.type == 'حرفي') {
           isAuth = true;
           isUser = false;
         }
@@ -146,8 +146,8 @@ class Auth with ChangeNotifier {
       bool nice = false;
       await ref.ref.getDownloadURL().then((photoUrl) async {
         final url =
-            "https://heraf-2acd3-default-rtdb.firebaseio.com/users.json?auth=$token";
-        final response = await http.post(
+            "https://heraf-2acd3-default-rtdb.firebaseio.com/users/$userId.json?auth=$token";
+        final response = await http.put(
           Uri.parse(url),
           body: json.encode({
             'email': userDetails.email,
@@ -185,30 +185,30 @@ class Auth with ChangeNotifier {
 
 Future<UserDetails> getUserDetails(userId, token) async {
   UserDetails result;
+  // final url =
+  //     'https://heraf-2acd3-default-rtdb.firebaseio.com/users.json?auth=$token&orderBy="userId"&equalTo="$userId"';
   final url =
-      'https://heraf-2acd3-default-rtdb.firebaseio.com/users.json?auth=$token&orderBy="userId"&equalTo="$userId"';
+      'https://heraf-2acd3-default-rtdb.firebaseio.com/users/$userId.json?auth=$token"';
   try {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      final items = json.decode(response.body) as Map<String, dynamic>;
-      if (items == null) {
-        return UserDetails();
-      }
-      items.forEach((id, item) {
-        result = UserDetails(
-          docId: id,
-          id: item['UserId'],
-          name: item['name'],
-          photo: item['photo'],
-          phone: item['phone'],
-          email: item['email'],
-          password: item['password'],
-          address: item['address'],
-          type: item['type'],
-          category: item['category'],
-          rate: item['rate'],
-        );
-      });
+      final user = json.decode(response.body);
+      result = UserDetails.fromJson(user);
+      // items.forEach((id, item) {
+      //   result = UserDetails(
+      //     docId: id,
+      //     id: item['UserId'],
+      //     name: item['name'],
+      //     photo: item['photo'],
+      //     phone: item['phone'],
+      //     email: item['email'],
+      //     password: item['password'],
+      //     address: item['address'],
+      //     type: item['type'],
+      //     category: item['category'],
+      //     rate: item['rate'],
+      //   );
+      // });
     } else {}
   } catch (e) {
     print(e);

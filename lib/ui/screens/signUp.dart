@@ -54,9 +54,11 @@ class _SignUpState extends State<SignUp> {
               Directionality(
                 textDirection: TextDirection.rtl,
                 child: Container(
-                  width: size.width * .8,
+                  width: size.width * .9,
                   // height: size.height * .5,
-                  padding: EdgeInsets.all(30),
+                  padding:
+                      EdgeInsets.only(right: 10, left: 10, top: 20, bottom: 20),
+                  margin: EdgeInsets.only(bottom: 30),
                   decoration: BoxDecoration(
                       color: Theme.of(context).accentColor,
                       borderRadius: BorderRadius.circular(32)),

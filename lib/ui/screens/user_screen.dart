@@ -28,10 +28,10 @@ class UserScreen extends StatelessWidget {
                   // alignment: Alignment.bottomCenter,
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
-                    // borderRadius: BorderRadius.only(
-                    //   bottomLeft: Radius.circular(60.0),
-                    //   bottomRight: Radius.circular(60.0),
-                    // ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10.0),
+                      bottomRight: Radius.circular(10.0),
+                    ),
                   ),
                   child: Center(
                       child: Logo(
@@ -47,10 +47,6 @@ class UserScreen extends StatelessWidget {
                 Container(
                   color: Theme.of(context).primaryColor,
                   child: TabBar(
-                    // labelColor: Theme.of(context).primaryColor,
-                    // overlayColor:
-                    //     MaterialStateProperty.all(Theme.of(context).primaryColor),
-                    // indicatorColor: Theme.of(context).primaryColor,
                     unselectedLabelColor: Theme.of(context).accentColor,
                     tabs: <Widget>[
                       Tab(
@@ -63,7 +59,7 @@ class UserScreen extends StatelessWidget {
                       ),
                       Tab(
                         text: 'الرسائل',
-                        icon: Icon(Icons.shopping_cart_rounded),
+                        icon: Icon(Icons.chat_outlined),
                       ),
                       Tab(
                         text: 'الإعدادات',
