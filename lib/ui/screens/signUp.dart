@@ -21,8 +21,6 @@ class _SignUpState extends State<SignUp> {
   String password;
   String name;
   String address;
-  // String type;
-  // String category;
   String phone;
   File photo;
   var selectedType;
@@ -264,7 +262,7 @@ class _SignUpState extends State<SignUp> {
                         ElevatedButton(
                           onPressed: () {
                             FocusScope.of(context).unfocus();
-                            _submit();
+                            _submit(context);
                           },
                           child: authMd.loading
                               ? CircularProgressIndicator()
@@ -289,7 +287,7 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Future<void> _submit() async {
+  Future<void> _submit(BuildContext context) async {
     if (!_formKey.currentState.validate() ||
         selectedType == null ||
         (selectedType == 'حرفي' && selectedCat == null)) {
@@ -314,15 +312,12 @@ class _SignUpState extends State<SignUp> {
         address: address,
         phone: phone,
         email: email,
-        password: password);
-    try {
-      await Provider.of<Auth>(context, listen: false).signUp(
-        userDetails: user,
-        photo: photo,
         type: selectedType,
         category: selectedCat,
-        context: context,
-      );
+        password: password);
+    try {
+      await Provider.of<Auth>(context, listen: false)
+          .signUp(userDetails: user, photo: photo, context: context);
     } catch (error) {
       print(error);
     }
@@ -331,7 +326,7 @@ class _SignUpState extends State<SignUp> {
   Future getImage() async {
     final picker = ImagePicker();
     final pickedFile =
-        await picker.getImage(source: ImageSource.gallery, imageQuality: 70);
+        await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
     // File compressedImage =
     //     await FlutterNativeImage.compressImage(image.path, quality: 70);
     setState(() {

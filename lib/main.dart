@@ -1,17 +1,22 @@
+import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:heraf/providers/auth.dart';
 import 'package:heraf/providers/laborers.dart';
-import 'package:heraf/ui/screens/home.dart';
 import 'package:heraf/ui/screens/laborer_screen.dart';
 import 'package:heraf/ui/screens/user_screen.dart';
+import 'package:heraf/ui/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'ui/screens/splash.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // _initFcm();
   runApp(MyApp());
 }
 
@@ -30,6 +35,8 @@ class MyApp extends StatelessWidget {
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
           title: 'Flutter Demo',
+          // onGenerateRoute: generateRoute,
+          navigatorKey: navigatorKey,
           theme: ThemeData(
             fontFamily: 'BoutrosMBCDinkum',
             accentColor: Color(0xffffc93c),
@@ -56,7 +63,7 @@ class MyApp extends StatelessWidget {
                       authResultSnapshot.connectionState ==
                               ConnectionState.waiting
                           ? Splash()
-                          : MyHomePage(),
+                          : WelcomeScreen(),
                 ),
         ),
       ),

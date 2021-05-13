@@ -1,18 +1,19 @@
 class UserDetails {
   final String name,
-      id,
-      docId,
+      userId,
       address,
       email,
       password,
       photo,
       category,
       phone,
-      type;
+      type,
+      token;
   double rate;
 
   UserDetails(
       {this.name,
+      this.token,
       this.photo,
       this.category,
       this.rate,
@@ -20,13 +21,12 @@ class UserDetails {
       this.address,
       this.email,
       this.type,
-      this.id,
-      this.docId,
+      this.userId,
       this.password});
 
   factory UserDetails.fromJson(Map<String, dynamic> json) {
     return UserDetails(
-      id: json['id'] ?? "",
+      userId: json['userId'] ?? "",
       name: json['name'] ?? "",
       address: json['address'] ?? "",
       email: json['email'] ?? "",
@@ -35,6 +35,7 @@ class UserDetails {
       category: json['category'] ?? "",
       type: json['type'] ?? "",
       phone: json['phone'] ?? "",
+      token: json['token'] ?? "",
       rate: json['rate'] ?? 0.0,
     );
   }

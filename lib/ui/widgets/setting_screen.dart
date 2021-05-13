@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heraf/providers/auth.dart';
-import 'package:heraf/ui/screens/home.dart';
+import 'package:heraf/ui/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -28,7 +28,7 @@ class SettingScreen extends StatelessWidget {
             settingItem(context, () {
               Provider.of<Auth>(context, listen: false).logout();
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => MyHomePage()));
+                  context, MaterialPageRoute(builder: (_) => WelcomeScreen()));
             }, Icons.exit_to_app, "تسجيل الخروج"),
             settingItem(context, () {}, Icons.handyman, "معلومات عنا"),
           ],

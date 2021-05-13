@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:heraf/ui/screens/laborers_screen.dart';
+import 'package:heraf/ui/screens/laborersList_screen.dart';
 import 'package:heraf/ui/widgets/constants.dart';
 
 import 'categoryItem.dart';

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:heraf/providers/auth.dart';
 import 'package:heraf/providers/laborers.dart';
+import 'package:heraf/services/notification_service.dart';
 import 'package:provider/provider.dart';
 
 class LaborersScreen extends StatefulWidget {
@@ -90,7 +91,14 @@ class _LaborersScreenState extends State<LaborersScreen> {
                         Expanded(
                           flex: 1,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              NotificationService.sendNotification(
+                                  'body',
+                                  'title',
+                                  Provider.of<Auth>(context, listen: false)
+                                      .userDetails
+                                      .token);
+                            },
                             child: Text("حجز"),
                           ),
                         )

@@ -6,14 +6,18 @@ import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   static const routeName = '/login';
+
   @override
   _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+
   String email;
+
   String password;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -85,7 +89,7 @@ class _LoginState extends State<Login> {
                         ElevatedButton(
                           onPressed: () {
                             FocusScope.of(context).unfocus();
-                            _submit();
+                            _submit(context);
                           },
                           child: authMd.loading
                               ? CircularProgressIndicator()
@@ -110,7 +114,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Future<void> _submit() async {
+  Future<void> _submit(BuildContext context) async {
     if (!_formKey.currentState.validate()) {
       return;
     }

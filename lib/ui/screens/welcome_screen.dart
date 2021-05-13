@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:heraf/ui/screens/login.dart';
 import 'package:heraf/ui/screens/signUp.dart';
 
-class MyHomePage extends StatelessWidget {
+class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

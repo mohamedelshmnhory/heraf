@@ -30,8 +30,7 @@ Future<List<UserDetails>> fetchLaborers(String category, String token) async {
       }
       extractedData.forEach((id, item) {
         loadedList.add(UserDetails(
-          docId: id,
-          id: item['UserId'],
+          userId: item['UserId'],
           name: item['name'],
           photo: item['photo'],
           phone: item['phone'],
